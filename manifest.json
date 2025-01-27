@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Newbie Extension",
+  "short_name": "newbExtens",
+  "description": "Extension that does stuff",
+  "version": "1.0",
+  "action": {
+    "default_popup": "./src/index.html",
+    "default_icon": "./icon.png"
+  },
+  "permissions": ["activeTab, tabs, scripting"],
+  "icons": {
+    "16": "./icon.png"
+  }
+}
