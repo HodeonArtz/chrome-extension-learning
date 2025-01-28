@@ -28,6 +28,12 @@
     color: unset;
   }
 }
+body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 input,
 button {
   cursor: pointer;
