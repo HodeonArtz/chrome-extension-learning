@@ -1,7 +1,35 @@
-@font-face {
-  font-family: "Segoe UI";
-  src: url("./segoe-ui.ttf");
+@layer base {
+  @font-face {
+    font-family: "Segoe UI";
+    src: url("./segoe-ui.ttf");
+  }
+  html,
+  input,
+  button {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body,
+  h1,
+  h2,
+  section,
+  input,
+  button {
+    margin: unset;
+    padding: unset;
+  }
+  input,
+  button {
+    border: unset;
+    background-color: unset;
+    font-size: unset;
+  }
 }
-html {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+input,
+button {
+  cursor: pointer;
+}
+button {
 }
