@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extension</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <header><h1>Modify your page</h1></header>
+    <main>
+      <section>
+        <label for="set-bg-btn">Set background red color</label>
+        <button id="set-bg-btn" class="set-bg-btn">Set background</button>
+      </section>
+      <section>
+        <label for="link-color-input">Change color to links</label>
+        <input
+          type="color"
+          id="link-color-input"
+          class="link-color-input"
+          value="#FF8800"
+        />
+        <button class="set-link-color">Change color</button>
+      </section>
+      <section>
+        <label for="delete-images">Delete all images</label>
+        <button id="delete-images" class="delete-images">Delete</button>
+      </section>
+      <section>
+        <label for="toggle-display-passwords">Toggle display passwords</label>
+        <button id="toggle-display-passwords" class="toggle-display-passwords">
+          Toggle
+        </button>
+      </section>
+      <section>
+        <label for="show-menu-btn">Show a menu</label>
+        <button id="show-menu-btn" class="show-menu-btn">Show</button>
+      </section>
+    </main>
+  </body>
+</html>
