@@ -38,10 +38,19 @@ button {
   background-color: #1c7ed6;
   color: white;
   font-weight: 800;
+  display: flex;
+  place-content: center;
+  gap: 12px;
 }
 button:hover {
   background-color: #1864ab;
 }
 button:active {
   background-color: #1c7ed6;
+}
+button.set-bg-btn {
+  background-color: #fa5252;
+}
+button.delete-images-btn {
+  background-color: #868e96;
 }
