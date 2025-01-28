@@ -39,8 +39,9 @@ button {
   color: white;
   font-weight: 800;
   display: flex;
-  place-content: center;
-  gap: 12px;
+  place-items: center;
+  gap: 10px;
+  height: 45px;
 }
 button:hover {
   background-color: #1864ab;
