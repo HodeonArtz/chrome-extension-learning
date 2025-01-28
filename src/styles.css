@@ -25,6 +25,7 @@
     border: unset;
     background-color: unset;
     font-size: unset;
+    color: unset;
   }
 }
 input,
@@ -32,4 +33,15 @@ button {
   cursor: pointer;
 }
 button {
+  padding: 8px 16px;
+  border-radius: 5px;
+  background-color: #1c7ed6;
+  color: white;
+  font-weight: 800;
+}
+button:hover {
+  background-color: #1864ab;
+}
+button:active {
+  background-color: #1c7ed6;
 }
