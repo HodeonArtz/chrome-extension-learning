@@ -19,6 +19,7 @@
   button {
     margin: unset;
     padding: unset;
+    user-select: none;
   }
   input,
   button {
@@ -34,6 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 250px;
 }
 input,
 button {
