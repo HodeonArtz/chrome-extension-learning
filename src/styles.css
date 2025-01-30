@@ -48,9 +48,10 @@ button {
   place-items: center;
   gap: 10px;
   font-size: 14px;
+  height: 40px;
 }
 input[type="color"] {
-  -webkit-appearance: none;
+  appearance: none;
   border: unset;
 }
 input[type="color"]::-webkit-color-swatch-wrapper {
@@ -62,7 +63,6 @@ input[type="color"]::-webkit-color-swatch {
 }
 input,
 button {
-  height: 40px;
   border-radius: 5px;
 }
 button:hover {
@@ -79,6 +79,7 @@ button.delete-images-btn {
 }
 label {
   text-transform: uppercase;
+  color: #444;
 }
 header h1 {
   font-weight: 900;
@@ -100,4 +101,10 @@ section {
   display: flex;
   align-items: stretch;
   gap: 16px;
+}
+
+.set-effects label {
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
 }
