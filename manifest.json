@@ -8,6 +8,7 @@
     "default_popup": "./src/index.html",
     "default_icon": "./icon.png"
   },
+  "host_permissions": ["<all_urls>"],
   "permissions": ["activeTab", "tabs", "scripting"],
   "icons": {
     "16": "./icon.png"
