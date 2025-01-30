@@ -1,14 +1,3 @@
-const setBackgroundRedButton = document.querySelector(".set-bg-btn");
-
-setBackgroundRedButton.addEventListener(
-  "click",
-  useChromeFunction(setBackgroundRed)
-);
-
-function setBackgroundRed() {
-  document.body.style.backgroundColor = "#883333";
-}
-
 function useChromeFunction(func) {
   return () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -21,3 +10,15 @@ function useChromeFunction(func) {
     });
   };
 }
+
+// <<===========||===========||===========||===========>>
+
+const setBackgroundRedButton = document.querySelector(".set-bg-btn");
+
+setBackgroundRedButton.addEventListener(
+  "click",
+  useChromeFunction(setBackgroundRed)
+);
+
+const setBackgroundRed = () =>
+  (document.body.style.backgroundColor = "#883333");
