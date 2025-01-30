@@ -51,6 +51,7 @@ button {
   height: 40px;
 }
 input[type="color"] {
+  width: 90%;
   appearance: none;
   border: unset;
 }
@@ -91,10 +92,10 @@ section {
   flex-direction: column;
 }
 main {
-  gap: 10px;
+  gap: 12px;
 }
 section {
-  gap: 6px;
+  gap: 3px;
 }
 
 .inputs {
