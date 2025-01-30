@@ -26,6 +26,7 @@
     background-color: unset;
     font-size: unset;
     color: unset;
+    height: unset;
   }
 }
 body {
@@ -39,15 +40,30 @@ button {
   cursor: pointer;
 }
 button {
-  padding: 8px 16px;
-  border-radius: 5px;
+  padding: 6px 14px;
   background-color: #1c7ed6;
   color: white;
   font-weight: 800;
   display: flex;
   place-items: center;
   gap: 10px;
-  height: 45px;
+  font-size: 14px;
+}
+input[type="color"] {
+  -webkit-appearance: none;
+  border: unset;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 5px;
+}
+input,
+button {
+  height: 40px;
+  border-radius: 5px;
 }
 button:hover {
   background-color: #1864ab;
@@ -63,8 +79,25 @@ button.delete-images-btn {
 }
 label {
   text-transform: uppercase;
-  font-weight: 600;
 }
 header h1 {
   font-weight: 900;
+}
+
+main,
+section {
+  display: flex;
+  flex-direction: column;
+}
+main {
+  gap: 10px;
+}
+section {
+  gap: 6px;
+}
+
+.inputs {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
 }
