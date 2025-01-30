@@ -41,3 +41,17 @@ function setLinkColor(color) {
 setLinkColorButton.addEventListener("click", () => {
   useChromeFunction(setLinkColor, [linkColorInput.value])();
 });
+
+// <<===========||===========||===========||===========>>
+
+const deleteImagesButton = document.querySelector(".delete-images-btn");
+
+function deleteAllImages() {
+  const allImages = document.querySelectorAll("img");
+  allImages.forEach((img) => img.remove());
+}
+
+deleteImagesButton.addEventListener(
+  "click",
+  useChromeFunction(deleteAllImages)
+);
