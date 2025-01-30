@@ -55,3 +55,28 @@ deleteImagesButton.addEventListener(
   "click",
   useChromeFunction(deleteAllImages)
 );
+
+// <<===========||===========||===========||===========>>
+const toggleDisplayPasswordsButton = document.querySelector(
+  ".toggle-display-passwords"
+);
+
+let passwordsAreShown = false;
+function togglePasswordDisplay(arePasswordsShown) {
+  const originalPasswordInputs = document.querySelectorAll(
+    'input[type="password"]'
+  );
+  const type = arePasswordsShown ? "text" : "password";
+
+  originalPasswordInputs.forEach((input) =>
+    input.classList.add("password-input")
+  );
+  document
+    .querySelectorAll(".password-input")
+    .forEach((input) => (input.type = type));
+}
+
+toggleDisplayPasswordsButton.addEventListener("click", () => {
+  passwordsAreShown = !passwordsAreShown;
+  useChromeFunction(togglePasswordDisplay, [passwordsAreShown])();
+});
