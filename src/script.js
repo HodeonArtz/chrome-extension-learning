@@ -69,11 +69,12 @@ function togglePasswordDisplay(arePasswordsShown) {
   const type = arePasswordsShown ? "text" : "password";
 
   originalPasswordInputs.forEach((input) =>
-    input.classList.add("password-input")
+    input.setAttribute("is_pass", arePasswordsShown)
   );
-  document
-    .querySelectorAll(".password-input")
-    .forEach((input) => (input.type = type));
+  document.querySelectorAll("input[is_pass]").forEach((input) => {
+    input.type = type;
+    input.setAttribute("is_pass", arePasswordsShown);
+  });
 }
 
 toggleDisplayPasswordsButton.addEventListener("click", () => {
