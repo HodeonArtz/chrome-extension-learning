@@ -4,17 +4,16 @@
  * @param {array} args
  * @returns {function}
  */
-function useChromeFunction(func, args) {
-  return () =>
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      if (!tabs.length) return;
+function executeChromeFunction(func, args) {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (!tabs.length) return;
 
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        func,
-        args,
-      });
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0].id },
+      func,
+      args,
     });
+  });
 }
 // >>=====>>====>>====#[<| EFFECTS |>]#====<<====<<=====<<
 
@@ -23,9 +22,8 @@ const setBackgroundRedButton = document.querySelector(".set-bg-btn");
 const setBackgroundRed = () =>
   (document.body.style.backgroundColor = "#883333");
 
-setBackgroundRedButton.addEventListener(
-  "click",
-  useChromeFunction(setBackgroundRed)
+setBackgroundRedButton.addEventListener("click", () =>
+  executeChromeFunction(setBackgroundRed)
 );
 
 // <<===========||===========||===========||===========>>
@@ -38,9 +36,9 @@ function setLinkColor(color) {
   allLinks.forEach((link) => (link.style.color = color));
 }
 
-setLinkColorButton.addEventListener("click", () => {
-  useChromeFunction(setLinkColor, [linkColorInput.value])();
-});
+setLinkColorButton.addEventListener("click", () =>
+  executeChromeFunction(setLinkColor, [linkColorInput.value])
+);
 
 // <<===========||===========||===========||===========>>
 
@@ -51,9 +49,8 @@ function deleteAllImages() {
   allImages.forEach((img) => img.remove());
 }
 
-deleteImagesButton.addEventListener(
-  "click",
-  useChromeFunction(deleteAllImages)
+deleteImagesButton.addEventListener("click", () =>
+  executeChromeFunction(deleteAllImages)
 );
 
 // <<===========||===========||===========||===========>>
@@ -79,5 +76,5 @@ function togglePasswordDisplay(arePasswordsShown) {
 
 toggleDisplayPasswordsButton.addEventListener("click", () => {
   passwordsAreShown = !passwordsAreShown;
-  useChromeFunction(togglePasswordDisplay, [passwordsAreShown])();
+  executeChromeFunction(togglePasswordDisplay, [passwordsAreShown]);
 });
