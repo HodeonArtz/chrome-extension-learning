@@ -136,3 +136,11 @@ toggleDisplayPasswordsButton.addEventListener("click", () => {
   passwordsAreShown = !passwordsAreShown;
   executeChromeFunction(togglePasswordDisplay, [passwordsAreShown]);
 });
+
+// <<===========||===========||===========||===========>>
+
+const showMenuButton = document.querySelector(".show-menu-btn");
+
+showMenuButton.addEventListener("click", () => {
+  showMenuButton.disabled = true;
+});

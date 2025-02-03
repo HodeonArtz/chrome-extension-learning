@@ -52,6 +52,15 @@ button {
   font-size: 14px;
   height: 40px;
 }
+button:disabled {
+  background-color: #444;
+}
+button:disabled:hover {
+  background-color: #555;
+}
+button:disabled:active {
+  background-color: #444;
+}
 input[type="color"] {
   width: 90%;
   appearance: none;
