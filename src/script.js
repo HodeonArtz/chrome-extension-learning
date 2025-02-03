@@ -4,8 +4,8 @@
  * @param {array} args
  * @returns {function}
  */
-function executeChromeFunction(func, args) {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+async function executeChromeFunction(func, args) {
+  await chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (!tabs.length) return;
 
     chrome.scripting.executeScript({
@@ -15,12 +15,63 @@ function executeChromeFunction(func, args) {
     });
   });
 }
+
+executeChromeFunction(() => {
+  window.useStyleState = (element) => {
+    element.dataset.elementModified = true;
+    if (element.dataset.originalStyle === undefined)
+      element.dataset.originalStyle = element.style.cssText;
+
+    const setStyle = (propertyName, value) => {
+      element.style[propertyName] = value;
+    };
+
+    return setStyle;
+  };
+  window.useAttributeState = (element) => {
+    element.dataset.elementModified = true;
+    const setAttribute = (attributeName, value) => {
+      if (element.dataset.originalAttribute === undefined)
+        element.dataset.originalAttribute = JSON.stringify({
+          attributeName,
+          value: element[attributeName],
+        });
+      element[attributeName] = value;
+    };
+
+    return setAttribute;
+  };
+});
 // >>=====>>====>>====#[<| EFFECTS |>]#====<<====<<=====<<
+
+const clearEffectsButton = document.getElementById("clear-effects");
+
+clearEffectsButton.addEventListener("click", () => {
+  executeChromeFunction(() => {
+    const modifiedElements = document.querySelectorAll(
+      '*[data-element-modified="true"]'
+    );
+    modifiedElements.forEach((element) => {
+      element.dataset.elementModified = undefined;
+      if (element.dataset.originalStyle !== undefined)
+        element.style.cssText = element.dataset.originalStyle;
+
+      if (element.dataset.originalAttribute !== undefined) {
+        const originalAttribute = JSON.parse(element.dataset.originalAttribute);
+        element[originalAttribute.attributeName] = originalAttribute.value;
+      }
+    });
+  });
+});
+
+// <<===========||===========||===========||===========>>
 
 const setBackgroundRedButton = document.querySelector(".set-bg-btn");
 
-const setBackgroundRed = () =>
-  (document.body.style.backgroundColor = "#883333");
+const setBackgroundRed = () => {
+  const setBodyStyle = window.useStyleState(document.body);
+  setBodyStyle("backgroundColor", "#883333");
+};
 
 setBackgroundRedButton.addEventListener("click", () =>
   executeChromeFunction(setBackgroundRed)
@@ -33,7 +84,10 @@ const linkColorInput = document.querySelector(".link-color-input");
 
 function setLinkColor(color) {
   const allLinks = document.querySelectorAll("a");
-  allLinks.forEach((link) => (link.style.color = color));
+  allLinks.forEach((link) => {
+    const setLinkColor = window.useStyleState(link);
+    setLinkColor("color", color);
+  });
 }
 
 setLinkColorButton.addEventListener("click", () =>
@@ -46,7 +100,10 @@ const deleteImagesButton = document.querySelector(".delete-images-btn");
 
 function deleteAllImages() {
   const allImages = document.querySelectorAll("img");
-  allImages.forEach((img) => img.remove());
+  allImages.forEach((img) => {
+    const setImageDisplay = window.useStyleState(img);
+    setImageDisplay("display", "none");
+  });
 }
 
 deleteImagesButton.addEventListener("click", () =>
@@ -69,7 +126,8 @@ function togglePasswordDisplay(arePasswordsShown) {
     input.setAttribute("is_pass", arePasswordsShown)
   );
   document.querySelectorAll("input[is_pass]").forEach((input) => {
-    input.type = type;
+    const setType = window.useAttributeState(input);
+    setType("type", type);
     input.setAttribute("is_pass", arePasswordsShown);
   });
 }

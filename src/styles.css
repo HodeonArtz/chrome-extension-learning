@@ -35,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 250px;
+  width: 300px;
 }
 input,
 button {
@@ -110,4 +110,8 @@ section {
   font-size: 14px;
   font-weight: bold;
   color: black;
+}
+#clear-effects {
+  background-color: #868e96;
+  padding: 4px 12px;
 }
