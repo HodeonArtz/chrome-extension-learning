@@ -1,0 +1,113 @@
+.extension-menu {
+  background-color: #eeeeee;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: unset;
+  padding: unset;
+  user-select: none;
+
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 10px;
+
+  input,
+  button {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  h1,
+  h2,
+  section,
+  input,
+  button {
+    margin: unset;
+    padding: unset;
+    user-select: none;
+  }
+  input,
+  button {
+    border: unset;
+    background-color: unset;
+    font-size: unset;
+    color: unset;
+    height: unset;
+    width: fit-content;
+  }
+
+  input,
+  button {
+    cursor: pointer;
+  }
+  button {
+    padding: 6px 14px;
+    background-color: #1c7ed6;
+    color: white;
+    font-weight: 800;
+    display: flex;
+    place-items: center;
+    gap: 10px;
+    font-size: 14px;
+    height: 40px;
+  }
+  button:disabled {
+    background-color: #444;
+  }
+  button:disabled:hover {
+    background-color: #555;
+  }
+  button:disabled:active {
+    background-color: #444;
+  }
+  input[type="color"] {
+    width: 90%;
+    appearance: none;
+    border: unset;
+  }
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 5px;
+  }
+  input,
+  button {
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #1864ab;
+  }
+  button:active {
+    background-color: #1c7ed6;
+  }
+  label {
+    text-transform: uppercase;
+    color: #444;
+  }
+  header h1 {
+    font-weight: 900;
+  }
+
+  main,
+  section {
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    gap: 12px;
+  }
+  section {
+    gap: 3px;
+  }
+
+  .inputs {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+  }
+}
