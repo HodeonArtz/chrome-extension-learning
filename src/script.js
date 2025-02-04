@@ -142,18 +142,29 @@ toggleDisplayPasswordsButton.addEventListener("click", () => {
 const showMenuButton = document.querySelector(".show-menu-btn");
 
 showMenuButton.addEventListener("click", async () => {
+  if (showMenuButton.disabled) return;
   showMenuButton.disabled = true;
   const [tab] = await chrome.tabs.query({
     active: true,
     currentWindow: true,
   });
-  chrome.scripting.insertCSS(
-    {
-      target: {
-        tabId: tab.id,
-      },
-      files: [""],
-    }
+  chrome.scripting.insertCSS({
+    target: {
+      tabId: tab.id,
+    },
+    files: ["menu.css"],
+  });
+  const menuStyles = `
+  <style>
+  ${await (await fetch("./menu.css")).text()}
+  </style>
+  `;
+  const menuComponent = await (await fetch("./menu.html")).text();
+  executeChromeFunction(
+    (menu, menuStyle) => {
+      document.body.innerHTML = menu + document.body.innerHTML;
+      document.head.innerHTML += menuStyle;
+    },
+    [menuComponent, menuStyles]
   );
-  executeChromeFunction(())
 });
