@@ -197,7 +197,12 @@ function executeMenuFunction(menu, menuStyle) {
   showLowestPriceButton.addEventListener("click", () => {
     const prices = [
       ...document.querySelectorAll(
-        ".a-color-price > *:first-child, .a-price[data-a-size='xl'] > *:first-child"
+        `
+        .a-color-price > *:first-child, 
+        .a-price[data-a-size='xl'] > *:first-child,
+        .a-price[data-a-size="medium_plus"] > *:first-child,
+        .a-price[data-a-color="base"] > *:first-child
+        `
       ),
     ]
       .map((priceEl) => ({
@@ -213,11 +218,10 @@ function executeMenuFunction(menu, menuStyle) {
     lowestPrice.element.classList.add("lowest-price");
 
     console.log(lowestPrice.element);
-    window.scrollTo({
+    lowestPrice.element.scrollIntoView({
       behavior: "smooth",
-      top:
-        lowestPrice.element.getBoundingClientRect().top -
-        window.innerHeight / 1.5,
+      block: "center",
+      inline: "center",
     });
   });
 }
