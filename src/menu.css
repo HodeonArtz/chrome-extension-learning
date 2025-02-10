@@ -128,3 +128,19 @@
     gap: 16px;
   }
 }
+*:has(> img.info-img)::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 3px;
+  background-color: rgba(255, 255, 255, 0.85);
+  content: attr(data-img-alt);
+  padding: 0.5rem;
+  color: black;
+  font-size: 1rem;
+  font-weight: 100;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 90;
+  border: #e2e2e2 solid 0.5px;
+  border-radius: 0.75rem;
+}

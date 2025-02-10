@@ -142,7 +142,6 @@ toggleDisplayPasswordsButton.addEventListener("click", () => {
 const showMenuButton = document.querySelector(".show-menu-btn");
 
 showMenuButton.addEventListener("click", async () => {
-  if (showMenuButton.disabled) return;
   showMenuButton.disabled = true;
   const [tab] = await chrome.tabs.query({
     active: true,
@@ -160,11 +159,31 @@ showMenuButton.addEventListener("click", async () => {
   </style>
   `;
   const menuComponent = await (await fetch("./menu.html")).text();
-  executeChromeFunction(
-    (menu, menuStyle) => {
-      document.body.innerHTML = menu + document.body.innerHTML;
-      document.head.innerHTML += menuStyle;
-    },
-    [menuComponent, menuStyles]
-  );
+  executeChromeFunction(executeMenuFunction, [menuComponent, menuStyles]);
 });
+function executeMenuFunction(menu, menuStyle) {
+  document.body.innerHTML = menu + document.body.innerHTML;
+  document.head.innerHTML += menuStyle;
+
+  const extensionMenu = document.querySelector(".extension-menu");
+  const showImagesInfoButton = extensionMenu.querySelector("#show-imgs-info");
+
+  const setAttributesToImg = (img) => {
+    img.parentElement.addEventListener("mouseenter", (e) => {
+      e.stopPropagation();
+      img.classList.add("info-img");
+    });
+    img.parentElement.addEventListener("mouseleave", (e) => {
+      e.stopPropagation();
+      img.classList.remove("info-img");
+    });
+
+    img.parentElement.dataset.imgAlt = img.alt;
+  };
+
+  showImagesInfoButton.addEventListener("click", () => {
+    const allImgs = document.querySelectorAll("img");
+
+    allImgs.forEach(setAttributesToImg);
+  });
+}
