@@ -1,4 +1,5 @@
 .extension-menu-wrapper {
+  opacity: 0.85;
   position: fixed;
   width: fit-content;
   top: 0;
@@ -8,6 +9,9 @@
   align-items: center;
   pointer-events: none;
   z-index: 1000;
+}
+.extension-menu-wrapper:hover {
+  opacity: 1;
 }
 .extension-menu {
   background-color: #eeeeee;
@@ -143,4 +147,27 @@
   z-index: 90;
   border: #e2e2e2 solid 0.5px;
   border-radius: 0.75rem;
+}
+*:has(> .lowest-price) {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: rgb(194, 80, 80);
+  background-color: yellow;
+  animation-name: lowest-price;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  * {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+}
+@keyframes lowest-price {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: yellow;
+  }
 }

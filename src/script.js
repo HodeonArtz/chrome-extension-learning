@@ -166,6 +166,9 @@ function executeMenuFunction(menu, menuStyle) {
   document.head.innerHTML += menuStyle;
 
   const extensionMenu = document.querySelector(".extension-menu");
+
+  // <<===========||===========||===========||===========>>
+
   const showImagesInfoButton = extensionMenu.querySelector("#show-imgs-info");
 
   const setAttributesToImg = (img) => {
@@ -183,7 +186,38 @@ function executeMenuFunction(menu, menuStyle) {
 
   showImagesInfoButton.addEventListener("click", () => {
     const allImgs = document.querySelectorAll("img");
-
     allImgs.forEach(setAttributesToImg);
+  });
+
+  // <<===========||===========||===========||===========>>
+
+  const showLowestPriceButton =
+    extensionMenu.querySelector("#find-lowest-price");
+
+  showLowestPriceButton.addEventListener("click", () => {
+    const prices = [
+      ...document.querySelectorAll(
+        ".a-color-price > *:first-child, .a-price[data-a-size='xl'] > *:first-child"
+      ),
+    ]
+      .map((priceEl) => ({
+        element: priceEl,
+        price: +priceEl.textContent.replace("€", "").replace(",", ".").trim(),
+      }))
+      .sort((a, b) => a.price - b.price);
+
+    if (!prices.length) return;
+
+    const lowestPrice = prices[0];
+
+    lowestPrice.element.classList.add("lowest-price");
+
+    console.log(lowestPrice.element);
+    window.scrollTo({
+      behavior: "smooth",
+      top:
+        lowestPrice.element.getBoundingClientRect().top -
+        window.innerHeight / 1.5,
+    });
   });
 }

@@ -121,6 +121,14 @@ section {
   color: black;
 }
 #clear-effects {
-  background-color: #868e96;
-  padding: 4px 12px;
+  border: solid 2px #91969c;
+  background-color: #edf2f7;
+  color: #444;
+  padding: 4px 8px;
+  height: 30px;
+  font-size: 13px;
+  gap: 4px;
+  svg {
+    height: 18px;
+  }
 }
